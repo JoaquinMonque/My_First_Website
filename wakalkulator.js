@@ -19,6 +19,7 @@ function onButtonClick(event) {
   var value = event.target.innerText;
   var isItANumber = !isNaN(value);
 
+  // check if its first click 
   if (isFirst) {
     if (isItANumber) {
       newValue = value;
