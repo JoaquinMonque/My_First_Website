@@ -1,0 +1,44 @@
+.main-container{
+    width: 500px;
+    margin:auto;
+    background-color: black;
+}
+.result-box{
+    color:white;
+    font-size: 150px;
+    bottom: 5px;
+    height: 200px;
+}
+.buttons-box{
+    height: 600px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+}
+.button{
+    height: 100px;
+    width: 100px;
+    color: whitesmoke;
+    background-color: darkgrey;
+    margin: 8px;
+    border-radius: 50px;
+    font-size: 50px;
+    align-content: center;
+    justify-content:center;
+    text-align: auto;
+    vertical-align: auto;
+    padding-top: 8px;
+}
+.orange-button{
+    background-color: orange;
+}
+.light-grey-button{
+    background-color: lightgrey;
+    color: black;
+}
+.hidden{
+    visibility: hidden;
+}
