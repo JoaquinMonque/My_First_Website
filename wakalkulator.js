@@ -1,10 +1,11 @@
-// global scope variables 
+// global scope variables
 var result = 0;
 var newValue = null;
 var lastClicked = null;
 var operator = null;
 var isFirst = true;
 
+// re-initialize calculator
 function clearCalculator() {
   result = 0;
   newValue = null;
