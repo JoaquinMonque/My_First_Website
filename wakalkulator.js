@@ -6,11 +6,10 @@ var operator = null;
 var isFirst = true;
 
 function updateResult(isResult = false) {
-  if ((isResult = false)) {
+  if (isResult) {
     document.querySelector(".result-box").innerText = result;
   } else {
-    document.querySelector(".result-box").innerText =
-      newValue + operator + result;
+    document.querySelector(".result-box").innerText = newValue;
   }
 }
 
@@ -59,6 +58,7 @@ function onButtonClick(event) {
     return clearCalculator();
   } else if (value == "%") {
     newValue = newValue / 100;
+    updateResult();
     return;
   } else if (value == "=") {
     calculateOperation();
@@ -75,7 +75,7 @@ function onButtonClick(event) {
   } else {
     operator = value;
     result = newValue;
-    newValue = 0;
+    newValue = null;
   }
   updateResult();
 }
