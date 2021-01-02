@@ -5,6 +5,15 @@ var lastClicked = null;
 var operator = null;
 var isFirst = true;
 
+function updateResult(isResult = false) {
+  if ((isResult = false)) {
+    document.querySelector(".result-box").innerText = result;
+  } else {
+    document.querySelector(".result-box").innerText =
+      newValue + operator + result;
+  }
+}
+
 // re-initialize calculator
 function clearCalculator() {
   result = 0;
@@ -12,6 +21,33 @@ function clearCalculator() {
   lastClicked = null;
   operator = null;
   isFirst = true;
+  updateResult();
+}
+
+function calculateOperation() {
+  try {
+    switch (operator) {
+      case "+": {
+        result = result + newValue;
+        break;
+      }
+      case "-": {
+        result = result - newValue;
+        break;
+      }
+      case "X": {
+        result = result * newValue;
+        break;
+      }
+      case "/": {
+        result = result / newValue;
+        break;
+      }
+    }
+    updateResult(true);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 //prints the value of button clicked
@@ -19,31 +55,29 @@ function onButtonClick(event) {
   var value = event.target.innerText;
   var isItANumber = !isNaN(value);
 
-  // check if its first click 
-  if (isFirst) {
-    if (isItANumber) {
+  if (value == "AC") {
+    return clearCalculator();
+  } else if (value == "%") {
+    newValue = newValue / 100;
+    return;
+  } else if (value == "=") {
+    calculateOperation();
+    return;
+  }
+
+  // check if its first click
+  if (isItANumber) {
+    if (newValue == null) {
       newValue = value;
     } else {
-      operator = value;
+      newValue = newValue + value;
     }
-    isFirst = false;
   } else {
-    if (isItANumber) {
-      if (newValue == null) {
-        newValue = value;
-      } else {
-        newValue = newValue + value;
-      }
-    } else {
-      operator = value;
-    }
+    operator = value;
+    result = newValue;
+    newValue = 0;
   }
-
-  if (operator === "AC") {
-    clearCalculator();
-  }
-
-  console.log(newValue, isItANumber, operator);
+  updateResult();
 }
 
 //add event listener to the buttons
